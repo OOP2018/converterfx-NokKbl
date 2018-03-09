@@ -7,8 +7,17 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
-
+/**
+ * UI controller for events and initializing components.
+ * @author Kunyaruk Katebunlu
+ */
 public class ConverterApp extends Application {
+	
+	/**
+	 * The start method is called after the init method has returned,
+	 * and after the system is ready for the application to begin running.
+	 * @param primaryStage is the stage for this application which the application scene can be set.
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -23,6 +32,9 @@ public class ConverterApp extends Application {
 		}
 	}
 	
+	/**
+	 * Main method for run the application.
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

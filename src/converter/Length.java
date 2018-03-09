@@ -1,6 +1,11 @@
 package converter;
 
+/**
+ * Length enum is a class with a fixed set of static instances for Length units.
+ * @author Kunyaruk Katebunlu
+ */
 public enum Length {
+	/** enum members */
 	Meter(1.0000),
 	Centimeter(0.0100),
 	Kilometer(1000.0),
@@ -9,20 +14,18 @@ public enum Length {
 	Wa(2.00000),
 	AU(149597870700L);
 	
+	/** attributes of the enum numbers */
 	private final double value;
 	
-	private Length(double value) {
-		this.value = value;
-	}
+	/**
+	 * Constructor of Length.
+	 * @param value is an input value.
+	 */
+	private Length(double value) { this.value = value; }
 	
-	public double getValue() {
-		return this.value;
-	}
-	
-	public static void main(String[] args) {
-		Length[] lengths = Length.values();
-		 // use the values
-		 for(Length x : lengths)
-		 System.out.println(x.toString()+" = "+x.getValue());
-	}
+	/**
+	 * Return a value of the Length units.
+	 * @return value of Length units.
+	 */
+	public double getValue() { return this.value; }
 }

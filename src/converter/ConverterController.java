@@ -19,9 +19,13 @@ public class ConverterController {
 	@FXML
 	private ComboBox<Length> unitbox2;
 	
+	/**
+	 * JavaFX calls the initialize() method of the controller when
+	 * it creates the UI form, after the components have been created
+	 * and @FXML annotated attributes have been set.
+	 */
 	@FXML
 	public void initialize() {
-		System.out.println("Running initialize");
 		if(unitbox1 != null) {
 			unitbox1.getItems().addAll(Length.values());
 			unitbox1.getSelectionModel().select(0);
@@ -32,13 +36,14 @@ public class ConverterController {
 		}
 	}
 	
+	/**
+	 * Convert a distance from one unit to another.
+	 */
 	public void handleConvert(ActionEvent event) {
 		String text = textfield1.getText().trim();
 		Length unit1 = unitbox1.getValue();
-		System.out.printf("got values %s %s\n", text, unit1.toString());
 		String text2 = textfield2.getText().trim();
 		Length unit2 = unitbox2.getValue();
-		System.out.printf("got values %s %s\n", text2, unit2.toString());
 		String result;
 		double convertToMeter;
 		
@@ -46,31 +51,28 @@ public class ConverterController {
 			if(!text.isEmpty()) {
 				double input1 = Double.parseDouble(text);
 				convertToMeter = input1/unit2.getValue();
-				System.out.println("handleConvert converting " + text);
 				result = String.format("%.4g", convertToMeter*unit1.getValue());
 				textfield2.setText(result);
 			} else if(!text2.isEmpty()) {
 				double input2 = Double.parseDouble(text2);
 				convertToMeter = input2/unit1.getValue();
-				System.out.println("handleConvert converting " + text2);
 				result = String.format("%.4g", convertToMeter*unit2.getValue());
 				textfield1.setText(result);
 			}
 		} catch(NumberFormatException num) {
-			if(!text.equals("")) {
+			if(!text.isEmpty()) {
 				textfield2.setText("Invalid number");
-				textfield2.setStyle("-fx-control-inner-background: #f08080;");
-			} else if(!text2.equals("")) {
+			} else if(!text2.isEmpty()) {
 				textfield1.setText("Invalid number");
-				textfield1.setStyle("-fx-control-inner-background: #f08080;");
 			}
 		}
 	}
 	
+	/**
+	 * Clear text in TextField.
+	 */
 	public void handleClear() {
 		textfield1.clear();
-		textfield1.setStyle("-fx-control-inner-background: white;");
 		textfield2.clear();
-		textfield2.setStyle("-fx-control-inner-background: white;");
 	}
 }
